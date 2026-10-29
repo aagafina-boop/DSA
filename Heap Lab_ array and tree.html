@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>Heap Lab: array and tree</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700&family=JetBrains+Mono:wght@400;600&display=swap"
+    >
+    <link rel="stylesheet" href="heap-lab.css">
+  </head>
+  <body>
+    <main>
+      <h1>Heap Lab</h1>
+      <p class="sub">Move between an array and its heap tree</p>
+
+      <div class="bar tabs">
+        <button id="kA" class="on">Array → Tree</button>
+        <button id="kB">Tree → Array</button>
+      </div>
+      <div class="bar">
+        <button id="tMin" class="on">Min-heap</button>
+        <button id="tMax">Max-heap</button>
+        <button id="rand">New random heap</button>
+        <button id="randArray">New random array</button>
+        <span id="badge"></span>
+      </div>
+      <div class="bar">
+        <button id="mFree" class="on">1. Free placement</button>
+        <button id="mGuide">2. Explain step by step</button>
+      </div>
+
+      <details class="opt">
+        <summary>Use my own array</summary>
+        <div class="bar">
+          <input type="text" id="inp" aria-label="Array values, comma separated">
+          <button id="load">Load array</button>
+        </div>
+        <p class="err" id="err"></p>
+        <label><input type="checkbox" id="hint" checked> Show slot numbers</label>
+      </details>
+
+      <details class="panel concept">
+        <summary>How a heap fits in an array</summary>
+        <div class="concept-content">
+          <p>
+            A heap has two separate rules: its <strong>shape</strong> is a
+            complete binary tree (fill each level from left to right), and its
+            <strong>order</strong> puts each parent before its children. A
+            min-heap has a parent no larger than its children; a max-heap has a
+            parent no smaller than its children.
+          </p>
+          <p>
+            Store the tree level by level from left to right. The root is at
+            index 0. For a node at index <code>k</code>, its parent is
+            <code>floor((k - 1) / 2)</code>; its children are at
+            <code>2k + 1</code> and <code>2k + 2</code>. These formulas work
+            because a complete tree has no gaps in its levels.
+          </p>
+          <p>
+            Example: index 1 is the left child of index 0, and index 2 is the
+            right child. Their children are at indices 3, 4, 5, and 6.
+          </p>
+        </div>
+      </details>
+
+      <div class="panel" id="brief"></div>
+      <div id="stepper">
+        <span id="stepTxt"></span>
+        <button id="back">Back</button>
+        <button id="next">Next</button>
+      </div>
+      <div id="msg"></div>
+      <div class="panel progress-panel" id="progressPanel">
+        <div class="progress-heading">
+          <span id="progressLabel"></span>
+          <span id="progressCount" aria-live="polite"></span>
+        </div>
+        <progress id="progress" max="9" value="0" aria-label="Exercise progress"></progress>
+      </div>
+
+      <div class="panel" id="fP">
+        <p class="lbl">Formulas</p>
+        <div id="fStatic"></div>
+        <div id="formula"></div>
+      </div>
+      <div class="panel" id="guideP">
+        <p class="lbl">Your turn: type each answer, then press Check</p>
+        <div id="guide"></div>
+      </div>
+      <div class="panel" id="poolP">
+        <p class="lbl">Scattered values: drag each one into the tree</p>
+        <div id="pool"></div>
+      </div>
+      <div class="panel" id="treeP">
+        <p class="lbl">Tree</p>
+        <div class="scroll"><div id="tree"></div></div>
+      </div>
+      <div class="panel" id="arrP">
+        <p class="lbl" id="arrLbl"></p>
+        <div id="arr"></div>
+      </div>
+      <div id="msg2"></div>
+      <div class="bar" id="actions">
+        <button id="submit" class="on">Submit</button>
+        <button id="clearb">Clear</button>
+      </div>
+    </main>
+
+    <script src="heap-lab.js"></script>
+  </body>
+</html>
