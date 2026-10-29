@@ -16,21 +16,35 @@
       <h1>Heap Lab</h1>
       <p class="sub">Move between an array and its heap tree</p>
 
-      <div class="bar tabs">
-        <button id="kA" class="on">Array → Tree</button>
-        <button id="kB">Tree → Array</button>
+      <div class="top-controls">
+        <label class="control-field">
+          <span>Exercise</span>
+          <select id="taskSelect">
+            <option value="array-to-tree">Array → Tree</option>
+            <option value="tree-to-array">Tree → Array</option>
+          </select>
+        </label>
+        <label class="control-field">
+          <span>Heap type</span>
+          <select id="heapTypeSelect">
+            <option value="min">Min-heap</option>
+            <option value="max">Max-heap</option>
+          </select>
+        </label>
+        <label class="guidance-control">
+          <input type="checkbox" id="guidedToggle">
+          <span>Guided steps</span>
+        </label>
+        <span id="badge" role="status" aria-live="polite"></span>
       </div>
-      <div class="bar">
-        <button id="tMin" class="on">Min-heap</button>
-        <button id="tMax">Max-heap</button>
-        <button id="rand">New random heap</button>
-        <button id="randArray">New random array</button>
-        <span id="badge"></span>
-      </div>
-      <div class="bar">
-        <button id="mFree" class="on">1. Free placement</button>
-        <button id="mGuide">2. Explain step by step</button>
-      </div>
+
+      <details class="opt random-options">
+        <summary>More practice options</summary>
+        <div class="bar">
+          <button id="rand">New random heap</button>
+          <button id="randArray">New random array</button>
+        </div>
+      </details>
 
       <details class="opt">
         <summary>Use my own array</summary>

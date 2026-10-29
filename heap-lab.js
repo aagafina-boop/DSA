@@ -1,14 +1,11 @@
 (function () {
   const elements = {
     main: document.querySelector("main"),
-    arrayToTreeButton: document.getElementById("kA"),
-    treeToArrayButton: document.getElementById("kB"),
-    minHeapButton: document.getElementById("tMin"),
-    maxHeapButton: document.getElementById("tMax"),
+    taskSelect: document.getElementById("taskSelect"),
+    heapTypeSelect: document.getElementById("heapTypeSelect"),
+    guidedToggle: document.getElementById("guidedToggle"),
     randomButton: document.getElementById("rand"),
     randomArrayButton: document.getElementById("randArray"),
-    modeFreeButton: document.getElementById("mFree"),
-    modeGuideButton: document.getElementById("mGuide"),
     input: document.getElementById("inp"),
     loadButton: document.getElementById("load"),
     error: document.getElementById("err"),
@@ -734,9 +731,6 @@
       showTree && guidedMode ? "" : "none";
     elements.guide.innerHTML = getGuideHtml();
     elements.brief.innerHTML = getBriefHtml();
-    elements.modeFreeButton.classList.toggle("on", !guidedMode);
-    elements.modeGuideButton.classList.toggle("on", guidedMode);
-
     elements.stepper.style.display = isArrayToTree ? "flex" : "none";
     elements.stepText.textContent =
       "Step " +
@@ -1439,8 +1433,6 @@
 
   function setHeapType(newType) {
     heapType = newType;
-    elements.minHeapButton.classList.toggle("on", newType === "min");
-    elements.maxHeapButton.classList.toggle("on", newType === "max");
 
     if (usingGeneratedValues) {
       startRandomExercise();
@@ -1451,14 +1443,6 @@
 
   function setTask(newTask) {
     task = newTask;
-    elements.arrayToTreeButton.classList.toggle(
-      "on",
-      newTask === "array-to-tree"
-    );
-    elements.treeToArrayButton.classList.toggle(
-      "on",
-      newTask !== "array-to-tree"
-    );
     resetExercise();
   }
 
@@ -1510,20 +1494,14 @@
       "click",
       startRandomArrayExercise
     );
-    elements.minHeapButton.addEventListener("click", () => setHeapType("min"));
-    elements.maxHeapButton.addEventListener("click", () => setHeapType("max"));
-    elements.arrayToTreeButton.addEventListener("click", () =>
-      setTask("array-to-tree")
+    elements.heapTypeSelect.addEventListener("change", (event) =>
+      setHeapType(event.target.value)
     );
-    elements.treeToArrayButton.addEventListener("click", () =>
-      setTask("tree-to-array")
+    elements.taskSelect.addEventListener("change", (event) =>
+      setTask(event.target.value)
     );
-    elements.modeFreeButton.addEventListener("click", () => {
-      guidedMode = false;
-      resetExercise();
-    });
-    elements.modeGuideButton.addEventListener("click", () => {
-      guidedMode = true;
+    elements.guidedToggle.addEventListener("change", (event) => {
+      guidedMode = event.target.checked;
       resetExercise();
     });
     elements.hint.addEventListener("change", render);

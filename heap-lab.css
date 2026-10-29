@@ -94,6 +94,22 @@ h1 {
   margin-bottom: 10px;
 }
 
+.top-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  gap: 12px;
+  margin: 18px 0 14px;
+}
+
+.control-field {
+  display: grid;
+  gap: 4px;
+  color: var(--mute);
+  font-size: 13px;
+}
+
+.control-field select,
 input[type="text"] {
   flex: 1;
   min-width: 200px;
@@ -103,6 +119,27 @@ input[type="text"] {
   background: var(--card);
   color: var(--ink);
   font: 500 15px var(--mono);
+}
+
+.control-field select {
+  min-width: 130px;
+  font: 600 15px var(--head);
+  cursor: pointer;
+}
+
+.guidance-control {
+  align-self: end;
+  min-height: 38px;
+  padding: 0 4px;
+  color: var(--ink);
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.guidance-control input {
+  width: 16px;
+  height: 16px;
+  accent-color: var(--ink);
 }
 
 button {
@@ -153,6 +190,7 @@ label {
 }
 
 #badge {
+  align-self: center;
   padding: 4px 10px;
   border: 1.5px solid var(--ok);
   border-radius: 99px;
@@ -567,5 +605,33 @@ b {
   * {
     animation: none !important;
     transition: none !important;
+  }
+}
+
+@media (max-width: 560px) {
+  .top-controls {
+    align-items: stretch;
+    column-gap: 8px;
+    row-gap: 8px;
+  }
+
+  .control-field {
+    flex: 1 1 140px;
+  }
+
+  .control-field select {
+    min-width: 0;
+  }
+
+  .guidance-control {
+    flex: 1 1 160px;
+    min-width: 0;
+    gap: 4px;
+    font-size: 12px;
+  }
+
+  #badge {
+    padding: 4px 6px;
+    font-size: 11px;
   }
 }
